@@ -1,0 +1,19 @@
+basic_prompt: |
+  Currrent turn: {{  game.get_turn_number()  }}
+  Currrent stage (one action in a single turn): {{  game.get_turn_stage()  }}
+  Currrent stage attempt (in case invalid actions were attempted, max 3 invalid attempts allowed): {{  game.get_try_number()  }}
+  You are playing as agent with ID: {{ game.get_current_player_id() }} - meaning you are the {{ game.get_current_player().value }}
+
+
+basic_prompt_german: |
+  Aktueller Zug: {{  game.get_turn_number()  }}
+  Aktuelle Phase (one action in a single turn): {{  game.get_turn_stage()  }}
+  Aktueller Versuchsversuch (in case invalid actions were attempted, max 3 invalid attempts allowed): {{  game.get_try_number()  }}
+  Sie spielen als Agent mit der ID: {{ game.get_current_player_id() }} - das bedeutet, Sie sind der {{ game.get_current_player().value }}
+  
+
+basic_prompt_polish: |
+  Obecna tura: {{  game.get_turn_number()  }}
+  Obecny etap (jedna akcja w ramach pojedynczej tury): {{  game.get_turn_stage()  }}
+  Obecna próba w ramach etapu (w przypadku, gdy próbowano wykonać nieprawidłowe akcje, maksymalnie 3 nieprawidłowych prób dozwolonych): {{  game.get_try_number()  }}
+  Grasz jako gracz o ID: {{ game.get_current_player_id() }} - oznacza to, że jesteś {{ game.get_current_player().value }}

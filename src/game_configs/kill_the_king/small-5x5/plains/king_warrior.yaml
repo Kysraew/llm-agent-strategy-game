@@ -1,0 +1,52 @@
+game_type: killTheKing # options: killTheKing, elimination. For killTheKing, we have to specify king unit
+king_unit_symbol: K
+
+max_turn_number: 30
+
+max_unsuccessful_actions_tries: 5 # turn ends after n unsuccessful action attempts in a row
+
+map_terrain: |-
+  .  .  .  .  .
+  .  .  .  .  .
+  .  .  .  .  .
+  .  .  .  .  .
+  .  .  .  .  .
+
+
+map_units: |-
+  K1 .  .  .  .
+  .  W1 .  .  .
+  .  .  .  .  .
+  .  .  .  W2 .
+  .  .  .  .  K2
+
+unit_types:
+  - name: Archer
+    unit_symbol: A
+    health: 5
+    attack: 5
+    speed: 2
+    attack_range: 3
+    possible_actions:
+      - MOVE
+      - ATTACK
+
+  - name: Warrior
+    unit_symbol: W
+    health: 10
+    attack: 5
+    speed: 2
+    attack_range: 1
+    possible_actions:
+      - MOVE
+      - ATTACK
+
+  - name: King
+    unit_symbol: K
+    health: 15
+    attack: 5
+    speed: 2
+    attack_range: 1
+    possible_actions:
+      - MOVE
+      - ATTACK

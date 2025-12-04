@@ -1,0 +1,66 @@
+# test:
+#   temperature: 0.1      # lower temperature -> less creativity, faster responses | 0.0-2.0
+#   top_k: 100            # limits the selection to the top tokens | 1-100
+#   top_p: 0.3            # lower value -> more focused responses | 0-1
+#   num_predict: 2048     # max tokens to generate | 1-2048
+#   repeat_penalty: 1.0   # penalty for repetition | 0.0-2.0
+#   stop:
+#     - "\n"
+#     - "Example:"
+#     - "Think:"
+
+# ultra_fast:
+#   temperature: 0.0
+#   top_k: 1
+#   top_p: 0.1
+#   num_predict: 20
+#   repeat_penalty: 1.5
+#   stop:
+#     - "\n"
+#     - "Example:"
+#     - "Think:"
+
+# fast:
+#   temperature: 0.1
+#   top_k: 5
+#   top_p: 0.2
+#   num_predict: 30
+#   repeat_penalty: 1.2
+#   stop:
+#     - "\n"
+#     - "Example:"
+#     - "Think:"
+
+balanced:
+  temperature: 2
+  top_k: 1
+  top_p: 0
+
+default:
+  temperature: 0.8
+  top_k: 40
+  top_p: 0.9
+
+gemma:
+  temperature: 1
+  top_k: 64
+  top_p: 0.95
+
+# creative:
+#   temperature: 0.8
+#   top_k: 40
+#   top_p: 0.9
+#   num_predict: 512
+#   repeat_penalty: 1.0
+#   stop:
+#     - "\n"
+#     - "Example:"
+#     - "Think:"
+
+# default:
+#   temperature: 0.6
+#   top_p: 0.95
+
+#default2:
+#  temperature: 0.6
+#  top_k: 100

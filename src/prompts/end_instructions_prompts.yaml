@@ -1,0 +1,13 @@
+basic_prompt: |
+
+  **Do not** use MARKDOWN format in your responses. It is forbidden and can break the game!
+  You can provide your thinking process, but remember to output your decision in proper format.
+
+basic_prompt_german: |
+
+  Verwenden Sie in Ihren Antworten **kein** MARKDOWN-Format. Dies ist verboten und kann das Spiel beschädigen!
+  Sie können Ihren Denkprozess darlegen, aber denken Sie daran, Ihre Entscheidung im richtigen Format auszugeben.
+
+basic_prompt_polish: |
+  **Nie używaj** formatu MARKDOWN w swoich odpowiedziach. Jest to zabronione i może zepsuć grę!
+  Możesz podać swój proces myślowy, ale pamiętaj, aby podać swoją decyzję w odpowiednim formacie.

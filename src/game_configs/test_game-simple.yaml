@@ -1,0 +1,38 @@
+game_type: elimination
+
+max_turn_number: 10
+max_unsuccessful_actions_tries: 5 # turn ends after n unsuccessful action attempts in a row
+
+map_terrain: |-
+  M  M  M  M
+  M  .  .  M
+  M  .  .  M
+  M  M  M  M
+
+map_units: |-
+  .  .  .  .
+  .  W1 .  .
+  .  .  W2 .
+  .  .  .  .
+
+unit_types:
+  - name: Warrior
+    unit_symbol: W
+    health: 10
+    attack: 4
+    speed: 2
+    attack_range: 2
+    possible_actions:
+      - MOVE
+      - ATTACK
+# game_state:
+#   turn: 1
+#   player_turn: 'FIRST_PLAYER' # 'FIRST_PLAYER' or 'SECOND_PLAYER'
+#   units:
+#     - position: [1, 1]
+#       health: 10
+
+#     - position: [2, 2]
+#       health: 10
+#       carried_actions:
+#         - MOVE

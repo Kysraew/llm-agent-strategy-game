@@ -1,0 +1,170 @@
+basic_prompt: |
+  Game rules:
+  - Each player takes turns to move their units on a grid map.
+  - During each turn player can use all actions for each unit only once.
+  - The game ends when one player has no units left.
+  - Players can only move their own units.
+  - This is a board turn strategic game.
+  - You can always end your turn by returning END_TURN action, write: "ACTION: END_TURN SOURCE: (0, 0), TARGET: (0, 0)".
+  - The game ends when one player has no units left.
+  - Distance in mesured by Manhattan distance. For example from (0,0) to (2,2) distance is 4. From (1,1) to (2,3) distance is 3.
+  - In this game valid actions are MOVE, ATTACK, and END_TURN.
+  - During each turn, each unit can make one action type only once. exmample. unit A moves, then attack, but can't move again.
+    For exmample if unit description is:
+    Warrior(id=1, player_order=FIRST_PLAYER , position=(1, 1), health=10 / 10, attack=4, range=2, speed=2, symbol='W') available actions='MOVE'
+    You can not use MOVE action again for this unit, but you can use ATTACK action.
+  - You CANNOT move your unit onto a tile occupied by an enemy unit. You must move to a free tile within attack range, then use ATTACK action on the enemy.
+  - Example: If enemy is at (2,2) and your unit is at (0,0), first MOVE to (2,1), then ATTACK (2,2).
+  - MOVE can only be used to free tiles, never onto a tile with another unit.
+  - You only can go to the tiles marked as "." Don't go to tiles marked as "M" "M" means mountains".    
+  - Fields with "M" are mountains and cannot be entered.
+  - Unit can only do ACTIONS that are listed in possible_actions in unit description.
+  - You only control units with your player_order id
+  - Game contains of turn that have many stages. In each stage you can perform one action with one of your units. If you performs invalid action 5 times in a row your turn ends automatically.
+
+  Unit rules
+  - Unit range describes how far the unit can attack, measured in Manhattan distance. For example, a unit with range 2 at position (1,1) can attack any enemy unit within distance 2, such as (1,3), (3,1),(2,2), (1,2) etc.
+  - Unit can not go to the tile occupied by enemy unit.
+
+
+  - Actions description:
+    - MOVE: Move your unit to a target position within its speed range. Example: ACTION: MOVE SOURCE: (1, 1), TARGET: (2, 2)"." moves unit at (1,1) to (2,2). You can only move on free places.
+    - ATTACK: Attack an enemy unit within your unit's attack range. Example: "ACTION: ATTACK SOURCE: (2, 2), TARGET: (2, 3)" attacks enemy unit at (2,3) with your unit at (2,2).
+    - END_TURN: End your turn without taking any action. Example: "ACTION: END_TURN SOURCE: (0, 0), TARGET: (0, 0)".
+
+    TO ATTACK ENEMY UNIT MOVE YOUR UNIT ON FREE TILE WITHIN ATTACK RANGE AND IN THE NEXT ACTION ATTACK ENEMY UNIT. 
+    DON'T GO TO THE TILE OCCUPIED BY ENEMY UNIT.
+
+basic_prompt2: |
+  GAME RULES:
+  - If you want to move a unit, you can target only tiles that are walkable and not occupied by other unit
+  - You can only move within your MovementPoints, and inside the board
+  - ATTACK only visible enemy units within your AttackRange. REMEMBER ABOUT THE ATTACK RANGE!
+  - Do not target fog tiles or tiles that are non-walkable or occupied incorrectly for the action
+  - Never ATTACK an empty tile
+  - You can only give SOURCE of an action if your unit is on the tile
+
+  PRIORITIES:
+  1. If the enemy unit can be killed this turn, ATTACK it
+  2. Otherwise, make the highest-value safe ATTACK
+  3. If no attack is possible, MOVE to improve next-turn attack while keeping own units safe (ranged units keep distance)
+
+  IMPORTANT:
+  - If multiple legal options tie, pick the one with the smallest SOURCE (x, y), then smallest TARGET (x, y)
+  - If no legal action exists, END the turn
+  - If you try to carry out action that is not within game rules, you instantly lose
+  - Check TWICE if the unit you want to move is on the tile you think it is
+  - Your MAIN objective is NOT TO LOSE
+
+short_prompt: |
+  STRICT RULES:
+  - MOVE: Target walkable empty tiles
+  - Never attack empty tiles or your own units
+
+long_prompt: |
+  ## IMPORTANT RULES TO FOLLOW!!!:
+  - MOVE within speed range to walkable, empty tiles.
+  - Do not invent coordinates or targets.
+  - Do not MOVE on tiles occupied by other units (yours or enemy).
+  - Do not MOVE out of the map boundaries.
+  - MOVE only to walkable tiles ("."), not occupied, within your speed range where no other units are present.
+  - ATTACK only enemy units within AttackRange.
+  - Never ATTACK an empty tile.
+  - SOURCE must always be the position of your unit.
+  - Provide source coordinates of the unit you are commanding and target coordinates of the tile or unit you are targeting.
+  - You should always focus on only one action per turn.
+  - Check FEEDBACK AFTER YOUR LAST ACTION section carefully to avoid making the same mistake again.
+  - Check Units description section to know your units stats, abilities and position.
+  - Check Map description section to understand the terrain, obstacles and positions.
+  - You can ATTACK enemies within your AttackRange but if you ATTACK diagonally the distance counts as AttackRange / 2.
+  - AttackRange describes how far the unit can attack, measured in Manhattan distance. For example, a unit with range 2 at position (1,1) can attack any enemy unit within distance 2, such as (1,3), (3,1),(2,2), (1,2) etc.
+  - ATTACK when enemy units are on the neighboring tiles.
+  - Prioritize ATTACKING the enemy unit if possible.
+  - If no ATTACK is possible, MOVE closer to enemy units to ATTACK them later.
+
+divided_sections_prompt: |
+  ## IMPORTANT RULES
+
+  MAIN OBJECTIVE
+  - Kill enemy king to win the game and protect your own king, to not lose the game.
+
+  MOVE
+  - MOVE only to walkable tiles marked with ".". Tiles marked with "M" are NON-WALKABLE Mountains
+  - You can perform MOVE action ONLY with your units that have 'MOVE' as available action listed in units description section.
+  - **ALWAYS** respect speed range limit for each unit. Speed range is measured in Manhattan distance. For example, a unit with speed range 2 at position (1, 1) can MOVE to empty tiles within distance 2, such as (1,3), (3,1), (2,2), (1,2), but not (3, 2), (4, 1) etc.
+  - Cannot move to tiles occupied by other units
+  - Must stay within map boundaries
+
+  ATTACK
+  - ATTACK only visible enemy units
+  - You can ATTACK only with units that have ATTACK as available action.
+  - **ALWAYS** respect attack range limit for each unit
+  - Attack range describes how far the unit can attack, measured in Manhattan distance. For example, a unit with attack range 1 at position (1,1) can attack any enemy unit within distance 1, such as (1,2), (2,1), but not (1,3), (2,4) etc.
+  - Never attack empty tiles or friendly units
+
+  END TURN
+  - If there is no action to conduct or you decide to end the turn, respond with ACTION: END_TURN
+
+
+divided_sections_prompt_german: |
+  WICHTIGE REGELN
+
+  HAUPTZIEL
+  - Töte den gegnerischen König, um das Spiel zu gewinnen, und beschütze deinen eigenen König, um das Spiel nicht zu verlieren.
+
+  BEWEGUNG
+  - Bewegen Sie sich nur auf begehbaren Feldern, die mit „.“ markiert sind. Mit „M“ markierte Felder sind NICHT BEGEHBARE Berge.
+  - Sie können BEWEGUNGEN NUR mit Ihren Einheiten ausführen, für die „BEWEGUNG“ als verfügbare Aktion in der Einheitenbeschreibung aufgeführt ist.
+  - Halten Sie **IMMER** die Geschwindigkeitsbegrenzung für jede Einheit ein. Die Geschwindigkeit wird in Manhattan-Entfernung gemessen. Beispielsweise kann eine Einheit mit einer Geschwindigkeitsreichweite von 2 an Position (1, 1) sich auf leere Felder innerhalb einer Entfernung von 2 bewegen, z. B. (1,3), (3,1), (2,2), (1,2), aber nicht (3, 2), (4, 1) usw.
+  - Sie können sich nicht auf Felder bewegen, die von anderen Einheiten besetzt sind.
+  - Sie müssen innerhalb der Kartengrenzen bleiben.
+
+  ANGREIFEN
+  - Greifen Sie nur sichtbare feindliche Einheiten an.
+  - Sie können nur mit Einheiten angreifen, die „Angreifen” als verfügbare Aktion haben.
+  - Halten Sie **IMMER** die Angriffsreichweite jeder Einheit ein.
+  - Die Angriffsreichweite beschreibt, wie weit die Einheit angreifen kann, gemessen in Manhattan-Entfernung. Beispielsweise kann eine Einheit mit einer Angriffsreichweite von 1 an der Position (1,1) jede feindliche Einheit innerhalb einer Entfernung von 1 angreifen, z. B. (1,2), (2,1), aber nicht (1,3), (2,4) usw.
+  - Greife niemals leere Felder oder verbündete Einheiten an.
+
+  END TURN
+  - Wenn keine Aktion durchgeführt werden kann oder du dich entscheidest, den Zug zu beenden, antworte mit ACTION: END_TURN
+  
+
+
+divided_sections_prompt_polish: |
+  ## WAŻNE ZASADY
+ 
+  GŁÓWNY CEL
+  - Zabij króla przeciwnika, by wygrać grę i chroń swojego króla, by jej nie przegrać.
+
+  RUCH
+  - Poruszaj się wyłącznie na pola dostępne do ruchu oznaczone jako ".". Pola oznaczone jako "M" są górami, po których nie da się przemieszczać
+  - Możesz poruszać się wyłącznie swoimi jednostkami, które mają RUCH (MOVE) podaną jako dostępną akcję na liście jednostek (sekcja units descriptions)
+  - Przestrzegaj limitu zasięgu ruchu dla każdej z jednostek. Zasięg jest mierzony w odległości Manhattan. Na przykład jednostka z zasięgem (speed) 2 na pozycji (1, 1) może poruszyć się na puste pole w dystansie 2, takie jak (1,3), (3,1), (2,2), (1,2) itd.
+  - Nie możesz poruszać się na pola zajęte przez inne jednostki
+  - Musisz pozostać w granicach mapy
+
+  ATAK
+  - Atakuj tylko widoczne jednostki przeciwnika
+  - Możesz atakować TYLKO jednostkami, które mają ATAK (ATTACK) jako dostępną akcję.
+  - Przestrzegaj limitu zasięgu ataku dla każdej z jednostek
+  - Zasięg ataku opisuje jak daleko może dana jednostka zaatakować, jest mierzony w odległości Manhattan. Na przykład, jednostka z zasięgiem 2 na pozycji (1, 1) może zaatakować dowolną jednostkę przeciwnika w dystanie 2, takie jak (1,3), (3,1), (2,2), (1,2) itd.
+  - Nigdy nie atakuj pustych pól ani swoich jednostek
+
+  KONIEC TURY
+  - Jeżeli nie ma żadnej akcji do wykonania, albo chcesz zakonczyć swoją turę, zwróc jako odpowiedź END_TURN
+
+important_rules_prompt: |
+  DON'T GO TO THE TILE OCCUPIED BY ENEMY UNIT. 
+  DON'T GO TO THE TILE OCCUPIED BY ENEMY UNIT.
+  DON'T GO TO THE TILE OCCUPIED BY ENEMY UNIT.
+  DON'T GO TO THE TILE OCCUPIED BY ENEMY UNIT.
+  DON'T GO TO THE TILE OCCUPIED BY ENEMY UNIT.
+  DON'T GO TO THE TILE OCCUPIED BY ENEMY UNIT.
+  DON'T GO TO THE TILE OCCUPIED BY ENEMY UNIT.
+  DON'T GO TO THE TILE OCCUPIED BY ENEMY UNIT.
+  TO ATTACK ENEMY UNIT MOVE YOUR UNIT ON FREE TILE WITHIN ATTACK RANGE AND IN THE NEXT ACTION ATTACK ENEMY UNIT.
+  FOR EXAMAPLE IF ENEMY IS AT (2,2) AND YOUR UNIT IS AT (1,1), FIRST MOVE TO (2,1), THEN ATTACK (2,2).
+  Rule: If no free tile is within movement range, return END_TURN.  
+  Rule: MOVE target must be a free tile ('.') within speed range.  
+  Rule: ATTACK target must be an enemy unit within attack range, and you must first move to a free tile within range if needed.

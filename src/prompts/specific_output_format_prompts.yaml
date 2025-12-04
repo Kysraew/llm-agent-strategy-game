@@ -1,0 +1,68 @@
+basic_prompt: |
+  ACTION: <ACTION> SOURCE: (X, Y), TARGET: (X, Y)
+  EXAMAPLE: ACTION: MOVE SOURCE: (2, 3), TARGET: (2, 4)  
+  where <ACTION> is either MOVE or ATTACK, SOURCE is the coordinates of your unit (X, Y) and TARGET is the coordinates of the target position (X, Y) for MOVE or target unit (X, Y) for ATTACK.
+
+basic_prompt_german: |
+  ACTION: <ACTION> SOURCE: (X, Y), TARGET: (X, Y)
+  EXAMAPLE: ACTION: MOVE SOURCE: (2, 3), TARGET: (2, 4)  
+  where <ACTION> is either MOVE or ATTACK, SOURCE is the coordinates of your unit (X, Y) and TARGET is the coordinates of the target position (X, Y) for MOVE or target unit (X, Y) for ATTACK.
+
+
+basic_prompt_polish: |
+  ACTION: <ACTION> SOURCE: (X, Y), TARGET: (X, Y)
+  PRZYKŁAD: ACTION: MOVE SOURCE: (2, 3), TARGET: (2, 4)  
+  gdzie <ACTION> to albo MOVE (ruch) albo ATTACK (atak), SOURCE (źródło akcji) to współrzędne twojej jednostki (X, Y), a TARGET (cel akcji) to współrzędne pola docelowego (X, Y) dla ruchu lub jednostki do zaatakowania (X, Y).
+
+few_shot_prompt_with_correct_and_incorrect_examples: |
+  Output Format
+  Required format. No additional text. No explanations. One line only.
+  ACTION: <MOVE|ATTACK> SOURCE: (X, Y), TARGET: (X, Y)
+
+  Examples of Correct Output Format
+  Correct Example 1:
+  ACTION: MOVE SOURCE: (2, 4), TARGET: (3, 4)
+
+  Correct Example 2:
+  ACTION: ATTACK SOURCE: (5, 6), TARGET: (5, 7)
+
+  Examples of Incorrect Output Format
+  Incorrect Example 1:
+  MOVE from (2,4) to (3,4)
+
+  Incorrect Example 2:
+  I want to ATTACK the enemy at (5,7) using my unit at (5,6)
+
+short_prompt: |
+  Output Format
+  Required format. No additional text. No explanations. One line only.
+  ACTION: <MOVE|ATTACK> SOURCE: (X, Y), TARGET: (X, Y)
+
+force_short_prompt: |
+  YOU MUST OUTPUT ONLY ONE LINE IN THIS EXACT FORMAT AND NOTHING ELSE!!!:
+  ACTION: <ACTION> SOURCE: (X, Y), TARGET: (X, Y)
+  where <ACTION> is either MOVE or ATTACK, SOURCE is the coordinates of your unit (X, Y) and TARGET is the coordinates of the target position (X, Y) for MOVE or target unit (X, Y) for ATTACK.
+
+few_shot_prompt: |
+  Output Format
+  **Required format. No additional text. No explanations. One line only.
+  ACTION: <MOVE|ATTACK> SOURCE: (X, Y), TARGET: (X, Y)
+
+  Examples of Correct Output Format
+  Example 1:
+  ACTION: MOVE SOURCE: (2, 4), TARGET: (3, 4)
+
+  Example 2:
+  ACTION: ATTACK SOURCE: (5, 6), TARGET: (5, 7)
+
+few_shot_force_short_prompt: |
+  YOU MUST OUTPUT ONLY ONE LINE IN THIS EXACT FORMAT AND NOTHING ELSE!!!:
+  ACTION: <ACTION> SOURCE: (X, Y), TARGET: (X, Y)
+  where <ACTION> is either MOVE or ATTACK, SOURCE is the coordinates of your unit (X, Y) and TARGET is the coordinates of the target position (X, Y) for MOVE or target unit (X, Y) for ATTACK.
+
+  Examples of Correct Output Format
+  Example 1:
+  ACTION: MOVE SOURCE: (2, 4), TARGET: (3, 4)
+
+  Example 2:
+  ACTION: ATTACK SOURCE: (5, 6), TARGET: (5, 7)

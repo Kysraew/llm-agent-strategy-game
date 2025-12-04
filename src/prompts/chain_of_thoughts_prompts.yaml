@@ -1,0 +1,48 @@
+basic_prompt: |
+  READ THIS CAREFULLY AND FOLLOW IT EXACTLY!!!:
+  1. Find units that belong to you.
+  2. Choose an action to perform on any of your units. You could MOVE within move range or ATTACK enemy units.
+      2.1. If you chosen MOVE you can move your unit within number of fields from Movement Points of particular unit that is listed previously.
+      2.2. If you want to move you can move with such fields that the Movement Points would not be exceeded. For example you can go from (1,1) to (1,3) if you have 2 Movement Points or you can go from (1,1) to (2,2) if you have 2 Movement Points or if you have 1 Movement Point you can go from (1,1) to (1,2) or (2,1) but not to (2,2).
+      2.3. If you want to move diagonally you can do it but with two Movement Points you can go from (1,1) to (1,3) but you cannot go from (1,1) to (3,3). You can go from (1,1) to maximum (2,2) or (0,0).
+      2.4. If you chosen ATTACK you can attack enemy unit within number of fields from AttackRange of particular unit that is listed previously.
+      2.5. If you want to attack you can attack with such fields that the Attack Range would not be exceeded. For example you can attack unit from (1,1) to (1,3) if you have 2 Attack Range or you can attack unit from (1,1) to (2,2) if you have 2 Attack Range or if you have 1 Attack Range you can attack unit from (1,1) to (1,2) or (2,1) but not to (2,2).
+      2.6. If you want to attack diagonally you can do it but with two Attack Range you can attack from (1,1) to (1,3) but you cannot attack from (1,1) to (3,3). You can go attack (1,1) to maximum (2,2) or (0,0).
+  3. Check if your range is valid with Movement Points or Attack Range according to the previously listed rules!
+      3.1. If it is valid you can perform this action.
+      3.2. If it is not valid you cannot perform this action and you have to go back to the first sentence of this list.
+
+thought_for_longer: |
+  1. Think for longer before answering. Read cerfully the rules again. 
+  2. Before answering consider if your move will be valid. Write your thoughts.
+  3. Always think if unit can do the action you are planning to do.
+
+simple_prompt: |
+  ## Chain of Thought
+  1. Check game state, your units, its statistics and units of your enemy and its statistics.
+  2. Consider your past actions that are listed in `Game history` section.
+  3. Think about your strategy. Choose an action to perform on any of your units. It may be MOVE or ATTACK.
+  4. You can only MOVE within speed range of unit or ATTACK within attack range of unit and ONLY with your units that have those actions available and listed in units description section.
+  5. You can only MOVE to empty tile or ATTACK to tile on which enemy unit is located. DO NOT MOVE TO TILES APPEARING AS 'M' ON MAP!
+  6. If you decide for action that is not END_TURN, first check if selected unit has selected action available and calculate Manhattan distance to make sure your MOVE/ATTACK is within range (range has to be >= distance!).
+
+
+simple_prompt_german: |
+  ## Chain of Thought
+  1. Überprüfen Sie den Spielstatus, Ihre Einheiten, deren Statistiken und die Einheiten Ihres Gegners sowie deren Statistiken.
+  2. Berücksichtigen Sie Ihre bisherigen Aktionen, die im Abschnitt „Spielverlauf“ aufgeführt sind.
+  3. Überlegen Sie sich Ihre Strategie. Wählen Sie eine Aktion aus, die Sie mit einer Ihrer Einheiten ausführen möchten. Dies kann eine BEWEGUNG oder ein ANGRIFF sein.
+  4. Sie können sich nur innerhalb der Bewegungsreichweite Ihrer Einheit BEWEGEN oder innerhalb der Angriffsreichweite Ihrer Einheit ANGREIFEN, und zwar NUR mit Ihren Einheiten, denen diese Aktionen zur Verfügung stehen und die im Abschnitt „Einheitenbeschreibung“ aufgeführt sind.
+  5. Sie können nur auf leere Felder BEWEGEN oder Felder ANGREIFEN, auf denen sich eine gegnerische Einheit befindet. BEWEGEN SIE SICH NICHT AUF FELDER, DIE AUF DER KARTE MIT „M“ GEKENNZEICHNET SIND!
+  6. Wenn Sie sich für eine Aktion entscheiden, die nicht END_TURN ist, überprüfen Sie zunächst, ob die ausgewählte Einheit die ausgewählte Aktion ausführen kann, und berechnen Sie die Manhattan-Entfernung, um sicherzustellen, dass Ihre BEWEGUNG/IHR ANGRIFF innerhalb der Reichweite liegt (die Reichweite muss >= Entfernung sein  
+
+
+simple_prompt_polish: |
+  ## Chain of Thought
+  1. Sprawdz stan gry, swoje jednostki i jednostki przeciwnika.
+  2. Rozważ swoje poprzednie akcje podane w sekcji `Game history`.
+  3. Zastanów się nad swoją strategią. Wybierz akcję do wykonania na dowolnej ze swoich jednostek. Może to być ruch lub atak.
+  4. Możesz się poruszać tylko w zakresie zasięgu ruchu albo atakować w zakresie zasięgu ataku i tylko jednostkami, które mają te akcje dostępne do wykonania.
+  5. Możesz się ruszać na puste pola albo atakować pola, na których znajduje się jednostka wroga.
+  6. Upewnij się, że akcja, którą próbujesz wykonać jest zgodna z regułami gry (dla przykładu - jeżeli jednostka, którą chcesz się poruszyć nie ma dostępnej akcji ruchu, akcja będzie oznaczona jako nieprawidłowa)
+  
