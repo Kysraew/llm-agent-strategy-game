@@ -13,10 +13,8 @@ Project was build on python 3.10 but should work on higher versions
 6. Run python main.py
 
 
-
-
 ## Config
-Main config is stored in config.yaml.
+Main config is stored in src/config.yaml.
 This config is responsibile for running games. We can specify many running modes:
 - solo: runs just one game with specified agents
 - arena: 
@@ -47,17 +45,11 @@ There are currently two types of terrain:
 
 There is only one game mode:
  - elimination - all enemy units have to be defeated
-
-Kill the king mode should not be hard to implement
-
-
-
+ - killTheKing - enemy king has to be defeted
 
 ## Game
 
-This class is responsibile for running one game instance between two agents. Agents control their units by passing source position, destination position and action type. In one turn agent can use every action of every unit. Each action is one stage. In one stage agent can try 5 times to return valid action, if it failes to do so, his turn ends. Game passes information to agents about successful and unsuccesfuls moves.
-
-
+This class is responsibile for running one game instance between two agents. Agents control their units by passing source position, destination position and action type. In one turn agent can use every action of every unit. Each action is one stage. In one stage agent can try specify times to return valid action, if it failes to do so, his turn ends. Game passes information to agents about successful and unsuccesfuls moves.
 
 
 ## Agents
@@ -66,14 +58,12 @@ This class is responsibile for choosing action for agent. Every new agents have 
 
 ### Algorithmic agents
 - RandomAgent - returns random action from all available actions
-- AttackFirstAgent - returns first attack action type
+- AttackFirstAgent - returns first attack action from all available actions type
+- AdvancedAlgorithmicAgent - returns attack actions, if there are not, returns actions that minimalise distance to enemy
 
 ### Llm agents
  - BasicLlmAgent - it is only llm agent in this project, but it is highly configuratable because of llm_provider and prompt_handler classes. We can also use feedback from the game by passing proper history function in the agent config. 
 
 
 
-
-
 ## Additional Info
- - Game does not implements pathfinding, so agents can cross 
