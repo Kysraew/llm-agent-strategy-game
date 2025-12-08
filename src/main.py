@@ -57,7 +57,5 @@ def main():
   # Arena.launch_solo_game_from_config(solo_game_settings)
 
 
-
-
 if __name__ == "__main__":
   main()

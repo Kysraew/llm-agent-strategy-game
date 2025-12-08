@@ -50,10 +50,8 @@ logger:
   level: "DEBUG"
 
 arena_settings:
-  number_of_games_per_map: 1 # ignored for now
+  number_of_games_per_map: 1 
 
-  # game_path_directory: "src/game_configs/kill_the_king/"
-  #game_path: "src/game_configs/20x20.yaml"
   game_path_directory: "src/game_configs/kill_the_king/small-5x5/"
 
 
@@ -140,6 +138,9 @@ arena_settings:
           - "basic_prompt" # wzorcowy
           # - "basic_prompt_polish"
           # - "basic_prompt_german"
+
+
+
 
 prompts_settings:
   - name: "SYSTEM_PROMPT"
