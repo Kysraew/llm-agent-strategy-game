@@ -1,0 +1,170 @@
+game_mode: "arena" # Options: "solo", "arena"
+
+model_options_path: "src/llm_providers/ollama_options.yaml"
+
+solo_game_settings:
+  game_config_path: "game_configs/test_game.yaml"
+  agents:
+    first_agent:
+      type: "BasicLlmAgent"
+      llm_provider:
+        type: "OllamaProvider"
+        # model_options_name: "default"
+        model: "gemma3:12b"
+      prompt_handler:
+        prompt_parts:
+          - type: "SYSTEM_PROMPT"
+            name: "basic_prompt"
+
+          - type: "ROLE_PROMPT"
+            name: "basic_prompt"
+
+          - type: "RULES_PROMPT"
+            name: "basic_prompt"
+
+          - type: "CHAIN_OF_THOUGHTS_PROMPT"
+            name: "thought_for_longer"
+
+          - type: "GAME_DESCRIPTION_PROMPT"
+            name: "basic_prompt"
+
+          - type: "MAP_FUNCTION"
+            name:
+              name: "basic_map_description"
+              arguments:
+
+          - type: "UNITS_FUNCTION"
+            name:
+              name: "basic_units_description"
+              arguments:
+
+          - type: "HISTORY_FUNCTION"
+            name:
+              name: "basic_game_events_history"
+              arguments:
+
+    second_agent:
+      type: "AttackFirstAgent"
+
+logger:
+  level: "DEBUG"
+
+arena_settings:
+  number_of_games_per_map: 1 # ignored for now
+
+  # game_path_directory: "src/game_configs/kill_the_king/"
+  #game_path: "src/game_configs/20x20.yaml"
+  game_path_directory: "src/game_configs/kill_the_king/small-5x5/"
+
+
+  second_agent:
+    type: "AttackFirstAgent"
+
+  mulitiple_agents_settings:
+    type: "BasicLlmAgent"
+
+    llm_provider:
+      type: "OllamaProvider"
+      model: "gemma3:12b"
+
+    model_options_names:
+      - "balanced"
+      # - "gemma"
+      # - "default"
+
+    prompt_parts:
+      # - type: "SYSTEM_PROMPT"
+      #   names:
+      #     - "basic_prompt"
+
+      - type: "ROLE_PROMPT"
+        names:
+          - "basic_prompt" # wzorcowy
+          # - "basic_prompt_polish"
+          # - "basic_prompt_german"
+          # - "basic_prompt2"
+          # - "creative_prompt2" # DRAWS
+          # - "creative_prompt3"
+
+      - type: "RULES_PROMPT"
+        names:
+          # - "basic_prompt"
+          # - "basic_prompt2"
+          # - "short_prompt"
+          # - "long_prompt"
+          - "divided_sections_prompt" # wzorcowy
+          # - "divided_sections_prompt_polish"
+          # - "divided_sections_prompt_german"
+          # - "important_rules_prompt"
+
+      - type: "CHAIN_OF_THOUGHTS_PROMPT"
+        names:
+          # - "basic_prompt"
+          # - "thought_for_longer"
+          - "simple_prompt" # wzorcowy
+          # - "simple_prompt_polish"
+          # - "simple_prompt_german"
+
+      - type: "GAME_DESCRIPTION_PROMPT"
+        names:
+          - "basic_prompt"
+
+      - type: "UNITS_FUNCTION"
+        names:
+          - name: "basic_units_description"
+            arguments:
+
+      - type: "MAP_FUNCTION"
+        names:
+          - name: "basic_map_description"
+            arguments:
+
+      - type: "HISTORY_FUNCTION"
+        names:
+          - name: "basic_game_events_history"
+            arguments:
+
+      - type: "SPECIFIC_OUTPUT_FORMAT_PROMPT"
+        names:
+          - "basic_prompt" # wzorcowy
+          # - "basic_prompt_polish"
+          # - "basic_prompt_german"
+          # - "few_shot_prompt_with_correct_and_incorrect_examples"
+          # - "short_prompt"
+          # - "force_short_prompt"
+          # - "few_shot_prompt"
+          # - "few_shot_force_short_prompt"
+
+      - type: "END_INSTRUCTIONS"
+        names:
+          - "basic_prompt" # wzorcowy
+          # - "basic_prompt_polish"
+          # - "basic_prompt_german"
+
+prompts_settings:
+  - name: "SYSTEM_PROMPT"
+    path: "prompts/system_prompts.yaml"
+
+  - name: "SPECIFIC_OUTPUT_FORMAT_PROMPT"
+    path: "prompts/specific_output_format_prompts.yaml"
+
+  - name: "ROLE_PROMPT"
+    path: "prompts/role_prompts.yaml"
+
+  - name: "RULES_PROMPT"
+    path: "prompts/rules_prompts.yaml"
+
+  - name: "CHAIN_OF_THOUGHTS_PROMPT"
+    path: "prompts/chain_of_thoughts_prompts.yaml"
+
+  - name: "GAME_DESCRIPTION_PROMPT"
+    path: "prompts/game_description_prompts.yaml"
+
+  - name: "END_INSTRUCTIONS"
+    path: "prompts/end_instructions_prompts.yaml"
+# ADDITIONALLY WE CAN HAVE:
+# - name: "HISTORY_FUNCTION"
+# - name: "MAP_FUNCTION"
+# - name: "UNIT_FUNCTION"
+# - name: "INVALID_MOVE_FUNCTION"
+

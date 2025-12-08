@@ -1,0 +1,4 @@
+ollama
+pyyaml
+pytest
+jinja2
